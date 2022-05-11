@@ -58,7 +58,7 @@ export default function MobileDrawer() {
             >
               {menuItem.label}
             </Link>
-            ))};
+            ))}
         </Box>
         <Box sx={styles.menuFooter}>
             <Box sx={styles.social}>
