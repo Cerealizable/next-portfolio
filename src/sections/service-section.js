@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { jsx, Container, Box, Grid, Text, Heading, Button, Image } from 'theme-ui';
 import { keyframes } from '@emotion/core';
 import TextFeature from 'components/text-feature';
-import ModalVideo from 'react-modal-video';
 import { IoIosPlay } from 'react-icons/io';
 
 import ServiceThumb from 'assets/service-thumb.png';
@@ -11,7 +10,6 @@ import shapePattern from 'assets/shape-pattern1.png';
 
 import Smart from 'assets/services/smart.svg';
 import Secure from 'assets/services/secure.svg';
-import Head from 'next/head';
 
 const data = {
   subTitle: 'our services',
@@ -37,28 +35,12 @@ const data = {
 };
 
 export default function ServiceSection() {
-  const [videoOpen, setVideoOpen] = useState(false);
-
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    setVideoOpen(true);
-  }
 
   return (
     <section sx={{variant: 'section.services'}}>
       <Container sx={styles.containerBox}>
         <Box sx={styles.thumbnail}>
           <Image src={ServiceThumb} alt="Thumbnail"/>
-          <Button
-            sx={styles.videoBtn}
-            onClick={handleClick}
-            aria-label="Play Button"
-          >
-            <span>
-              <IoIosPlay /> 
-            </span>
-          </Button>
           <Box sx={styles.shapeBox}>
             <Image src={shapePattern}/>
           </Box>
@@ -78,12 +60,6 @@ export default function ServiceSection() {
           </Grid>
         </Box>
       </Container>
-      <ModalVideo 
-        channel="youtube"
-        isOpen={videoOpen}
-        videoId="-uleG_Vecis"
-        onClose={() => setVideoOpen(false)}
-      />
     </section>
   );
 }
@@ -131,48 +107,6 @@ const styles = {
     zIndex: -1,
     display: ['none', null, null, null, null, 'inline-block'],
   },
-  videoBtn: {
-    zIndex: 2,
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: ['60px', null, '80px', null, '100px'],
-    height: ['60px', null, '80px', null, '100px'],
-    p: '0px !important',
-    backgroundColor: 'transparent',
-    '&::before': {
-      position: 'absolute',
-      content: '""',
-      left: '50%',
-      top: '50%',
-      transform: 'translateX(-50%) translateY(-50%)',
-      display: 'block',
-      width: ['60px', null, '80px', null, '100px'],
-      height: ['60px', null, '80px', null, '100px'],
-      backgroundColor: 'primary',
-      borderRadius: '50%',
-      animation: `${playPluse} 1.5s ease-out infinite`,
-      opacity: 0.5,
-    },
-    '> span': {
-      backgroundColor: 'rgba(255,255,255,0.5)',
-      width: 'inherit',
-      height: 'inherit',
-      textAlign: 'center',
-      borderRadius: '50%',
-      cursor: 'pointer',
-      transition: 'all 0.5s',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'relative',
-      zIndex: 2,
-    },
-    svg: {
-      fontSize: [40, null, 48, null, 62],
-    },
-  },
   contentBox: {
     width: ['100%', null, null, 315, 390, 450, null, 500],
     flexShrink: 0,
@@ -218,23 +152,6 @@ const styles = {
       fontSize: [1, null, null, '14px', 1],
       fontWeight: 400,
       lineHeight: 1.9,
-    },
-  },
-  videoWrapper: {
-    maxWidth: '100%',
-    position: 'relative',
-    width: '900px',
-    '&:before': {
-      content: '""',
-      display: 'block',
-      paddingTop: '56.25%',
-    },
-    iframe: {
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      top: 0,
-      left: 0,
     },
   },
 };
